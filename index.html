@@ -1,1 +1,924 @@
 
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>এসো আরবি শিখি - বাচ্চাদের মজার স্কুল</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B6B;
+            --secondary: #4ECDC4;
+            --accent: #FFE66D;
+            --dark: #292F36;
+            --light: #F7FFF7;
+            --purple: #9B5DE5;
+            --orange: #F15BB5;
+            --green: #2ECC71;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #E0F7FA;
+            background-image: radial-gradient(#4ECDC4 1px, transparent 1px), radial-gradient(#FF6B6B 1px, #E0F7FA 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            color: var(--dark);
+            padding-bottom: 80px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--purple), var(--orange));
+            color: white;
+            text-align: center;
+            padding: 18px 15px;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header h1 {
+            font-size: 1.9rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 0.95rem;
+            opacity: 0.95;
+        }
+
+        /* Navigation Tabs */
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 15px 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: white;
+            border: 3px solid var(--secondary);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 0 var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--secondary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #3bb5ac;
+        }
+
+        .tab-btn.voice-tab {
+            border-color: var(--orange);
+            box-shadow: 0 4px 0 var(--orange);
+        }
+        .tab-btn.voice-tab.active, .tab-btn.voice-tab:hover {
+            background: var(--orange);
+            box-shadow: 0 6px 0 #c93b92;
+        }
+
+        /* Main Content Area */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 5px 15px;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .instruction {
+            text-align: center;
+            background: var(--accent);
+            padding: 10px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            border: 2px dashed #f39c12;
+        }
+
+        /* Grids */
+        .grid-letters {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 15px;
+            direction: rtl;
+        }
+
+        .grid-words {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        /* Card Styles */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 15px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 6px 0 #dce1e5, 0 8px 15px rgba(0,0,0,0.08);
+            border: 3px solid #f0f0f0;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 8px 0 var(--primary), 0 12px 20px rgba(0,0,0,0.12);
+        }
+
+        .card:active {
+            transform: scale(0.95);
+        }
+
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            font-size: 3.5rem;
+            color: var(--purple);
+            line-height: 1.3;
+            margin-bottom: 5px;
+        }
+
+        .bangla-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .emoji-icon { font-size: 3rem; margin-bottom: 5px; }
+        .word-arabic { font-family: 'Amiri', serif; font-size: 2.5rem; color: var(--primary); }
+        .word-meaning { font-size: 1.1rem; color: #555; background: #f8f9fa; border-radius: 10px; padding: 4px 8px; margin-top: 5px; display: inline-block; }
+
+        /* Qaida Styles */
+        .qaida-box {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 8px solid var(--purple);
+        }
+        .qaida-title { font-size: 1.4rem; color: var(--purple); margin-bottom: 10px; }
+        .harakat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin-top: 15px; direction: rtl; }
+        .harakat-card { background: #FFF9C4; border: 2px solid #FBC02D; border-radius: 15px; padding: 10px; text-align: center; cursor: pointer; transition: 0.2s; }
+        .harakat-card:active { transform: scale(0.95); }
+
+        /* ================= VOICE GAME STYLES ================= */
+        .voice-game-box {
+            background: white;
+            border-radius: 30px;
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 550px;
+            margin: 0 auto;
+            border: 4px solid var(--orange);
+        }
+
+        .mode-selector {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            background: #f8f9fa;
+            padding: 8px;
+            border-radius: 20px;
+        }
+
+        .mode-btn {
+            border: none;
+            background: transparent;
+            padding: 6px 14px;
+            border-radius: 15px;
+            font-family: 'Hind Siliguri', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            color: #666;
+            transition: 0.2s;
+        }
+
+        .mode-btn.active {
+            background: var(--purple);
+            color: white;
+            box-shadow: 0 2px 8px rgba(155, 93, 229, 0.4);
+        }
+
+        .voice-progress {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .voice-char-card {
+            background: linear-gradient(145deg, #f3e5f5, #fff9c4);
+            border: 4px dashed var(--purple);
+            border-radius: 25px;
+            padding: 20px;
+            margin: 10px auto 20px;
+            max-width: 280px;
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .voice-char-card.success-anim {
+            animation: bounceSuccess 0.6s ease;
+            border-color: var(--green);
+            background: #E8F8F5;
+        }
+
+        @keyframes bounceSuccess {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.12); }
+        }
+
+        .voice-big-arabic {
+            font-family: 'Amiri', serif;
+            font-size: 6.5rem;
+            color: var(--purple);
+            line-height: 1.1;
+        }
+
+        .voice-hint-bangla {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-top: 5px;
+        }
+
+        /* Microphone Button */
+        .mic-wrapper {
+            margin: 20px 0 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .mic-btn {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--orange));
+            border: none;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(241, 91, 181, 0.4);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .mic-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .mic-btn.listening {
+            background: var(--green);
+            animation: pulseMic 1.2s infinite;
+        }
+
+        @keyframes pulseMic {
+            0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
+            70% { box-shadow: 0 0 0 25px rgba(46, 204, 113, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+        }
+
+        /* Sound Visualizer Bars */
+        .volume-bars {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 5px;
+            height: 30px;
+            margin: 10px 0;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .volume-bars.active {
+            opacity: 1;
+        }
+
+        .bar {
+            width: 8px;
+            height: 6px;
+            background: var(--purple);
+            border-radius: 5px;
+            transition: height 0.08s ease;
+        }
+
+        .voice-status {
+            font-size: 1.25rem;
+            font-weight: 700;
+            min-height: 35px;
+            margin: 10px 0;
+            color: var(--dark);
+        }
+
+        .voice-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .ctrl-btn {
+            background: #f0f4f8;
+            border: 2px solid #cbd5e0;
+            padding: 8px 16px;
+            border-radius: 15px;
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .ctrl-btn:hover {
+            background: #e2e8f0;
+        }
+
+        /* Quiz Section */
+        .quiz-container {
+            background: white;
+            border-radius: 25px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .score-board {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #d68910;
+            margin-bottom: 15px;
+            background: #FEF9E7;
+            padding: 8px 18px;
+            border-radius: 20px;
+            display: inline-block;
+            border: 2px solid #f9e79f;
+        }
+
+        .quiz-question-box {
+            background: #F3E5F5;
+            border: 3px dashed var(--purple);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .quiz-arabic { font-family: 'Amiri', serif; font-size: 5rem; color: var(--purple); line-height: 1.2; }
+        .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .quiz-btn { background: #f0f4f8; border: 3px solid #d9e2ec; padding: 15px; border-radius: 15px; font-family: 'Hind Siliguri', sans-serif; font-size: 1.3rem; font-weight: 700; cursor: pointer; transition: 0.2s; }
+        .quiz-btn:hover { background: var(--accent); border-color: #f39c12; }
+        .feedback { font-size: 1.3rem; font-weight: bold; margin-top: 15px; min-height: 35px; }
+        .sound-badge { position: absolute; top: 8px; left: 8px; font-size: 0.9rem; opacity: 0.5; }
+
+        @media (max-width: 480px) {
+            header h1 { font-size: 1.5rem; }
+            .tab-btn { padding: 7px 12px; font-size: 0.9rem; }
+            .grid-letters { grid-template-columns: repeat(3, 1fr); }
+            .arabic-text { font-size: 3rem; }
+            .quiz-options { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🌙 এসো আরবি শিখি 🌟</h1>
+        <p>ছোট্ট সোনামণিদের মজার আরবি স্কুল</p>
+    </header>
+
+    <!-- Navigation -->
+    <div class="nav-container">
+        <button class="tab-btn active" onclick="switchTab('letters', this)">🔤 আরবি হরফ</button>
+        <button class="tab-btn voice-tab" onclick="switchTab('voice-game', this)">🎤 মুখে বলো</button>
+        <button class="tab-btn" onclick="switchTab('words', this)">🍎 ছোট শব্দ</button>
+        <button class="tab-btn" onclick="switchTab('qaida', this)">📖 কায়দা ও তাজবীদ</button>
+        <button class="tab-btn" onclick="switchTab('quiz', this)">🎮 কুইজ গেম</button>
+    </div>
+
+    <div class="container">
+        
+        <!-- Section 1: Arabic Letters -->
+        <div id="letters" class="section active">
+            <div class="instruction">🔊 যেকোনো হরফের ওপর ট্যাপ (ক্লিক) করে উচ্চারণ শোনো!</div>
+            <div class="grid-letters" id="letters-grid"></div>
+        </div>
+
+        <!-- Section 2: VOICE RECOGNITION GAME (NEW) -->
+        <div id="voice-game" class="section">
+            <div class="voice-game-box">
+                <div class="score-board">🌟 স্টার: <span id="voice-score">0</span></div>
+                
+                <!-- Mode Selection for Parents -->
+                <div class="mode-selector">
+                    <button class="mode-btn active" id="btn-baby-mode" onclick="setVoiceMode('baby')">👶 বেবি মোড (সহজ)</button>
+                    <button class="mode-btn" id="btn-smart-mode" onclick="setVoiceMode('smart')">🎯 স্মার্ট মোড (যাচাই)</button>
+                </div>
+
+                <div class="voice-progress" id="voice-progress">হরফ: ১ / ২৮</div>
+
+                <!-- Character Display -->
+                <div class="voice-char-card" id="voice-card" onclick="speakVoiceTarget()">
+                    <span class="sound-badge">🔊</span>
+                    <div class="voice-big-arabic" id="voice-char">أ</div>
+                    <div class="voice-hint-bangla" id="voice-name">আলিফ</div>
+                </div>
+
+                <!-- Microphone Button -->
+                <div class="mic-wrapper">
+                    <button class="mic-btn" id="mic-btn" onclick="toggleListening()">🎤</button>
+                </div>
+
+                <!-- Sound Wave Visualizer -->
+                <div class="volume-bars" id="volume-bars">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+
+                <div class="voice-status" id="voice-status">🎤 মাইক্রোফোনে চাপ দিয়ে বলো: <b>"আলিফ"</b></div>
+
+                <!-- Helper Buttons -->
+                <div class="voice-controls">
+                    <button class="ctrl-btn" onclick="prevVoiceLetter()">⏮️ আগের হরফ</button>
+                    <button class="ctrl-btn" onclick="speakVoiceTarget()">🔊 উচ্চারণ শোনো</button>
+                    <button class="ctrl-btn" onclick="nextVoiceLetter()">পরের হরফ ⏭️</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Small Words -->
+        <div id="words" class="section">
+            <div class="instruction">🔊 ছবি দেখে আরবি শব্দ শিখি (ট্যাপ করলে শব্দ বলবে)</div>
+            <div class="grid-words" id="words-grid"></div>
+        </div>
+
+        <!-- Section 4: Qaida & Tajweed -->
+        <div id="qaida" class="section">
+            <div class="instruction">🔊 কার্ডে ট্যাপ করে হরকতের উচ্চারণ শোনো!</div>
+            
+            <div class="qaida-box">
+                <h3 class="qaida-title">১. হরকত (যবর, যের, পেশ)</h3>
+                <p>এক যবর, এক যের ও এক পেশকে <b>হরকত</b> বলে। হরকত উচ্চারণ তাড়াতাড়ি পড়তে হয়।</p>
+                <div class="harakat-grid">
+                    <div class="harakat-card" onclick="speakArabic('بَ')"><div class="arabic-text">بَ</div><div class="bangla-text">বা যবর - বা</div></div>
+                    <div class="harakat-card" onclick="speakArabic('بِ')"><div class="arabic-text">بِ</div><div class="bangla-text">বা যের - বি</div></div>
+                    <div class="harakat-card" onclick="speakArabic('بُ')"><div class="arabic-text">بُ</div><div class="bangla-text">বা পেশ - বু</div></div>
+                    <div class="harakat-card" onclick="speakArabic('تَ')"><div class="arabic-text">تَ</div><div class="bangla-text">তা যবর - তা</div></div>
+                    <div class="harakat-card" onclick="speakArabic('تِ')"><div class="arabic-text">تِ</div><div class="bangla-text">তা যের - তি</div></div>
+                    <div class="harakat-card" onclick="speakArabic('تُ')"><div class="arabic-text">تُ</div><div class="bangla-text">তা পেশ - তু</div></div>
+                </div>
+            </div>
+
+            <div class="qaida-box" style="border-left-color: var(--primary);">
+                <h3 class="qaida-title" style="color: var(--primary);">২. তানভীন (দুই যবর, দুই যের, দুই পেশ)</h3>
+                <p>দুই যবর, দুই যের ও দুই পেশকে <b>তানভীন</b> বলে। তানভীনে নুন (ন) এর মতো আওয়াজ হয়।</p>
+                <div class="harakat-grid">
+                    <div class="harakat-card" onclick="speakArabic('بًا')"><div class="arabic-text">بًا</div><div class="bangla-text">বা দুই যবর - বান</div></div>
+                    <div class="harakat-card" onclick="speakArabic('بٍ')"><div class="arabic-text">بٍ</div><div class="bangla-text">বা দুই যের - বিন</div></div>
+                    <div class="harakat-card" onclick="speakArabic('بٌ')"><div class="arabic-text">بٌ</div><div class="bangla-text">বা দুই পেশ - বুন</div></div>
+                </div>
+            </div>
+
+            <div class="qaida-box" style="border-left-color: var(--secondary);">
+                <h3 class="qaida-title" style="color: #00897B;">৩. ছোটদের তাজবীদ নিয়ম</h3>
+                <ul style="margin-left: 20px; line-height: 1.8; font-size: 1.05rem;">
+                    <li><b>কলকলাহ হরফ ৫টি:</b> ( ق ط ب ج د ) - এই হরফগুলোতে জযম ( ْ ) থাকলে ধাক্কা দিয়ে পড়তে হয়।</li>
+                    <li><b>গুন্নাহ:</b> নুন (نّ) বা মীম (مّ) হরফে তাশদীদ ( ّ ) থাকলে নাকের বাঁশি হতে গুনগুন করে ১ আলিফ পরিমাণ টেনে পড়তে হয়।</li>
+                    <li><b>মাদ্দ (টান):</b> যবরের বাম পাশে খালি আলিফ (ا) থাকলে ১ আলিফ টেনে পড়তে হয়। যেমন: <span style="font-family:'Amiri'; font-size:1.5rem; color:var(--purple); cursor:pointer;" onclick="speakArabic('بَا')">بَا (বা)</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Section 5: Fun Quiz -->
+        <div id="quiz" class="section">
+            <div class="quiz-container">
+                <div class="score-board">⭐ তোমার স্টার: <span id="score">0</span></div>
+                <h3>বলো তো এই হরফটির নাম কী?</h3>
+                
+                <div class="quiz-question-box" onclick="speakCurrentQuiz()">
+                    <div class="quiz-arabic" id="quiz-char">أ</div>
+                    <small style="color: #666;">🔊 শুনতে এখানে ট্যাপ করো</small>
+                </div>
+
+                <div class="quiz-options" id="quiz-options"></div>
+                <div class="feedback" id="quiz-feedback"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // ১. আরবি ২৮টি হরফের ডেটা ও নমনীয় ম্যাচিং কীওয়ার্ড (বাংলা, ইংরেজি ও আরবি সম্ভাব্য উচ্চারণ)
+        const arabicLetters = [
+            { char: 'أ', name: 'আলিফ', sound: 'أَلِف', match: ['আলিফ', 'আলিপ', 'আলি', 'alif', 'alef', 'ألف', 'ا'] },
+            { char: 'ب', name: 'বা', sound: 'بَاء', match: ['বা', 'ভা', 'পা', 'ব', 'ba', 'baa', 'باء', 'ب'] },
+            { char: 'ت', name: 'তা', sound: 'تَاء', match: ['তা', 'ত', 'থা', 'ta', 'taa', 'تاء', 'ت'] },
+            { char: 'ث', name: 'ছা', sound: 'ثَاء', match: ['ছা', 'সা', 'চা', 'ছ', 'sa', 'tha', 'ثاء', 'ث'] },
+            { char: 'ج', name: 'জীম', sound: 'جِيم', match: ['জীম', 'জিম', 'যিম', 'জি', 'jim', 'jeem', 'جيم', 'ج'] },
+            { char: 'ح', name: 'হা', sound: 'حَاء', match: ['হা', 'হ', 'আ', 'ha', 'haa', 'حاء', 'ح'] },
+            { char: 'خ', name: 'খ', sound: 'خَاء', match: ['খ', 'খা', 'ক', 'খো', 'kha', 'kho', 'خاء', 'خ'] },
+            { char: 'د', name: 'দাল', sound: 'دَال', match: ['দাল', 'ডাল', 'দেল', 'দা', 'dal', 'daal', 'دال', 'د'] },
+            { char: 'ذ', name: 'যাল', sound: 'ذَال', match: ['যাল', 'জাল', 'ঝাল', 'দাল', 'zal', 'dhal', 'jal', 'ذال', 'ذ'] },
+            { char: 'ر', name: 'র', sound: 'رَاء', match: ['র', 'রা', 'রো', 'রও', 'ra', 'ro', 'راء', 'ر'] },
+            { char: 'ز', name: 'ঝা', sound: 'زَاي', match: ['ঝা', 'জা', 'যা', 'ঝ', 'za', 'ja', 'zay', 'زاي', 'ز'] },
+            { char: 'س', name: 'সীন', sound: 'سِين', match: ['সীন', 'সিন', 'ছিন', 'শিন', 'sin', 'seen', 'سين', 'س'] },
+            { char: 'ش', name: 'শীন', sound: 'شِين', match: ['শীন', 'শিন', 'সিন', 'shin', 'sheen', 'شين', 'ش'] },
+            { char: 'ص', name: 'সোয়াদ', sound: 'صَاد', match: ['সোয়াদ', 'সাদ', 'ছোয়াদ', 'সোয়াদ', 'হোয়াদ', 'sad', 'swad', 'صاد', 'ص'] },
+            { char: 'ض', name: 'দোয়াদ', sound: 'ضَاد', match: ['দোয়াদ', 'দাদ', 'দোয়াদ', 'জোয়াদ', 'dad', 'dwad', 'ضاد', 'ض'] },
+            { char: 'ط', name: 'তোয়া', sound: 'طَاء', match: ['তোয়া', 'তোয়া', 'তা', 'ত', 'তো', 'toya', 'twa', 'ta', 'طاء', 'ط'] },
+            { char: 'ظ', name: 'যোয়া', sound: 'ظَاء', match: ['যোয়া', 'জোয়া', 'জোয়া', 'যোয়া', 'জা', 'zoya', 'jwa', 'za', 'ظاء', 'ظ'] },
+            { char: 'ع', name: 'আইন', sound: 'عَيْن', match: ['আইন', 'আঈন', 'ইন', 'আই', 'ain', 'ayn', 'عين', 'ع'] },
+            { char: 'غ', name: 'গইন', sound: 'غَيْن', match: ['গইন', 'গঈন', 'গাইন', 'গ', 'gain', 'ghain', 'غين', 'غ'] },
+            { char: 'ف', name: 'ফা', sound: 'فَاء', match: ['ফা', 'পা', 'ফ', 'fa', 'pha', 'فاء', 'ف'] },
+            { char: 'ق', name: 'ক্বফ', sound: 'قَاف', match: ['ক্বফ', 'কফ', 'কাপ', 'কাফ', 'ক', 'qaf', 'kof', 'قاف', 'ق'] },
+            { char: 'ك', name: 'কাফ', sound: 'كَاف', match: ['কাফ', 'কাপ', 'কফ', 'কা', 'kaf', 'kaaf', 'كاف', 'ك'] },
+            { char: 'ل', name: 'লাম', sound: 'لَام', match: ['লাম', 'নাম', 'লা', 'lam', 'laam', 'لام', 'ل'] },
+            { char: 'م', name: 'মীম', sound: 'مِيم', match: ['মীম', 'মিম', 'মি', 'mim', 'meem', 'ميم', 'م'] },
+            { char: 'ن', name: 'নূন', sound: 'نُون', match: ['নূন', 'নুন', 'নোন', 'nun', 'noon', 'نون', 'ن'] },
+            { char: 'و', name: 'ওয়াও', sound: 'وَاو', match: ['ওয়াও', 'ওয়াও', 'ওয়া', 'ও', 'waw', 'wow', 'واو', 'و'] },
+            { char: 'ه', name: 'হা', sound: 'هَاء', match: ['হা', 'হ', 'আ', 'ha', 'haa', 'هاء', 'ه'] },
+            { char: 'ي', name: 'ইয়া', sound: 'يَاء', match: ['ইয়া', 'ইয়া', 'ইয়াও', 'ই', 'ya', 'iya', 'ياء', 'ي'] }
+        ];
+
+        // ২. ছোট আরবি শব্দের ডেটা
+        const arabicWords = [
+            { word: 'أَسَدٌ', bangla: 'আসাদুন', meaning: 'সিংহ', emoji: '🦁' },
+            { word: 'بَيْتٌ', bangla: 'বাইতুন', meaning: 'ঘর / বাড়ি', emoji: '🏠' },
+            { word: 'تُفَّاحٌ', bangla: 'তুফফাহুন', meaning: 'আপেল', emoji: '🍎' },
+            { word: 'جَمَلٌ', bangla: 'জামালুন', meaning: 'উট', emoji: '🐪' },
+            { word: 'سَمَكٌ', bangla: 'সামাকুন', meaning: 'মাছ', emoji: '🐟' },
+            { word: 'شَمْسٌ', bangla: 'শামসুন', meaning: 'সূর্য', emoji: '☀️' },
+            { word: 'قَمَرٌ', bangla: 'ক্বামারুন', meaning: 'চাঁদ', emoji: '🌙' },
+            { word: 'كِتَابٌ', bangla: 'কিতাবুন', meaning: 'বই', emoji: '📖' },
+            { word: 'قَلَمٌ', bangla: 'ক্বালামুন', meaning: 'কলম', emoji: '🖊️' },
+            { word: 'مَاءٌ', bangla: 'মা-উন', meaning: 'পানি', emoji: '💧' },
+            { word: 'وَرْدَةٌ', bangla: 'ওয়ারদাতুন', meaning: 'গোলাপ ফুল', emoji: '🌹' },
+            { word: 'يَدٌ', bangla: 'ইয়াদুন', meaning: 'হাত', emoji: '✋' }
+        ];
+
+        // হরফ ও শব্দ কার্ড রেন্ডার করা
+        const lettersGrid = document.getElementById('letters-grid');
+        arabicLetters.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `<span class="sound-badge">🔊</span><div class="arabic-text">${item.char}</div><div class="bangla-text">${item.name}</div>`;
+            card.onclick = () => { playPopEffect(card); speakArabic(item.sound); };
+            lettersGrid.appendChild(card);
+        });
+
+        const wordsGrid = document.getElementById('words-grid');
+        arabicWords.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `<span class="sound-badge">🔊</span><div class="emoji-icon">${item.emoji}</div><div class="word-arabic">${item.word}</div><div class="bangla-text">${item.bangla}</div><div class="word-meaning">অর্থ: ${item.meaning}</div>`;
+            card.onclick = () => { playPopEffect(card); speakArabic(item.word); };
+            wordsGrid.appendChild(card);
+        });
+
+        // অডিও উচ্চারণ (Text-to-Speech)
+        function speakArabic(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'ar-SA';
+                utterance.rate = 0.8;
+                utterance.pitch = 1.1;
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        function playPopEffect(element) {
+            element.style.transform = 'scale(0.9)';
+            setTimeout(() => { element.style.transform = ''; }, 150);
+        }
+
+        function switchTab(tabId, btnElement) {
+            stopListening(); // অন্য ট্যাবে গেলে মাইক্রোফোন বন্ধ হবে
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            btnElement.classList.add('active');
+
+            if(tabId === 'quiz') loadQuiz();
+            if(tabId === 'voice-game') updateVoiceUI();
+        }
+
+        // =========================================================================
+        // 🎤 VOICE RECOGNITION & VOLUME DETECTION GAME LOGIC
+        // =========================================================================
+        let voiceIndex = 0;
+        let voiceScore = 0;
+        let voiceMode = 'baby'; // 'baby' or 'smart'
+        let isListening = false;
+        let recognition = null;
+        let audioContext = null;
+        let mediaStream = null;
+        let volumeInterval = null;
+        let babySpeakCounter = 0;
+        let isProcessingSuccess = false;
+
+        function setVoiceMode(mode) {
+            voiceMode = mode;
+            document.getElementById('btn-baby-mode').classList.toggle('active', mode === 'baby');
+            document.getElementById('btn-smart-mode').classList.toggle('active', mode === 'smart');
+            stopListening();
+            updateVoiceUI();
+        }
+
+        function updateVoiceUI() {
+            const current = arabicLetters[voiceIndex];
+            document.getElementById('voice-char').innerText = current.char;
+            document.getElementById('voice-name').innerText = current.name;
+            document.getElementById('voice-progress').innerText = `হরফ: ${voiceIndex + 1} / ${arabicLetters.length}`;
+            document.getElementById('voice-status').innerHTML = `🎤 মাইক্রোফোনে চাপ দিয়ে বলো: <b>"${current.name}"</b>`;
+            document.getElementById('voice-status').style.color = 'var(--dark)';
+        }
+
+        function speakVoiceTarget() {
+            const current = arabicLetters[voiceIndex];
+            speakArabic(current.sound);
+        }
+
+        function nextVoiceLetter() {
+            stopListening();
+            voiceIndex = (voiceIndex + 1) % arabicLetters.length;
+            updateVoiceUI();
+        }
+
+        function prevVoiceLetter() {
+            stopListening();
+            voiceIndex = (voiceIndex - 1 + arabicLetters.length) % arabicLetters.length;
+            updateVoiceUI();
+        }
+
+        function toggleListening() {
+            if (isListening) {
+                stopListening();
+            } else {
+                startListening();
+            }
+        }
+
+        async function startListening() {
+            if (isProcessingSuccess) return;
+            const current = arabicLetters[voiceIndex];
+            const statusEl = document.getElementById('voice-status');
+            const micBtn = document.getElementById('mic-btn');
+
+            try {
+                // ১. মাইক্রোফোনের সাউন্ড লেভেল মাপার জন্য Web Audio API চালু করা
+                mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const source = audioContext.createMediaStreamSource(mediaStream);
+                const analyser = audioContext.createAnalyser();
+                analyser.fftSize = 256;
+                source.connect(analyser);
+                const dataArray = new Uint8Array(analyser.frequencyBinCount);
+
+                isListening = true;
+                babySpeakCounter = 0;
+                micBtn.classList.add('listening');
+                document.getElementById('volume-bars').classList.add('active');
+                statusEl.innerHTML = `👂 আমি শুনছি... জোরে বলো <b>"${current.name}"</b>`;
+                statusEl.style.color = '#00897B';
+
+                const bars = document.querySelectorAll('.volume-bars .bar');
+
+                // ভলিউম মিটার অ্যানিমেশন এবং বেবি মোড ডিটেকশন
+                volumeInterval = setInterval(() => {
+                    analyser.getByteFrequencyData(dataArray);
+                    let sum = 0;
+                    for (let i = 0; i < dataArray.length; i++) sum += dataArray[i];
+                    let avgVolume = sum / dataArray.length;
+
+                    // সাউন্ড বার ওঠানামা করানো
+                    bars.forEach((bar, idx) => {
+                        let h = Math.max(6, Math.min(30, (dataArray[idx * 4] / 255) * 35));
+                        bar.style.height = h + 'px';
+                    });
+
+                    // বেবি মোডে বাচ্চা জোরে শব্দ করলেই পয়েন্ট পাবে (৪০০ মিলিসেকেন্ড টানা আওয়াজ করলে)
+                    if (voiceMode === 'baby' && avgVolume > 28) {
+                        babySpeakCounter++;
+                        if (babySpeakCounter >= 5) {
+                            handleVoiceSuccess(`বাচ্চা সুন্দর করে "${current.name}" বলেছে!`);
+                        }
+                    }
+                }, 80);
+
+                // ২. পাশাপাশি ব্রাউজারের Speech Recognition চালু করা
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                if (SpeechRecognition) {
+                    recognition = new SpeechRecognition();
+                    recognition.lang = 'bn-BD'; // বাংলা উচ্চারণ রিকগনিশন
+                    recognition.interimResults = true;
+                    recognition.maxAlternatives = 3;
+
+                    recognition.onresult = (event) => {
+                        let transcript = '';
+                        for (let i = 0; i < event.results.length; i++) {
+                            for (let j = 0; j < event.results[i].length; j++) {
+                                transcript += ' ' + event.results[i][j].transcript.toLowerCase().trim();
+                            }
+                        }
+
+                        if (voiceMode === 'baby' && transcript.length > 0) {
+                            // বেবি মোডে যেকোনো কথা শনাক্ত হলেই পাস
+                            handleVoiceSuccess();
+                        } else if (voiceMode === 'smart') {
+                            // স্মার্ট মোডে কীওয়ার্ড ম্যাচিং
+                            const matched = current.match.some(keyword => transcript.includes(keyword.toLowerCase()));
+                            if (matched) {
+                                handleVoiceSuccess();
+                            } else if (event.results[0].isFinal) {
+                                statusEl.innerHTML = `🤔 শুনেছি: "${event.results[0][0].transcript}" — আবার চেষ্টা করো অথবা বেবি মোড নাও!`;
+                                statusEl.style.color = '#E67E22';
+                                stopListening(false);
+                            }
+                        }
+                    };
+
+                    recognition.onerror = () => {
+                        // যদি ব্রাউজারে স্পিচ এপিআই এরর দেয় কিন্তু বেবি মোড চালু থাকে, তবুও ভলিউম ডিটেকশন কাজ করবে
+                    };
+
+                    recognition.start();
+                }
+
+            } catch (err) {
+                statusEl.innerHTML = `⚠️ মাইক্রোফোন চালু করা যায়নি! ব্রাউজারে Allow করুন অথবা HTTPS/Localhost ব্যবহার করুন।`;
+                statusEl.style.color = '#C62828';
+                stopListening(false);
+            }
+        }
+
+        function stopListening(resetText = true) {
+            isListening = false;
+            document.getElementById('mic-btn').classList.remove('listening');
+            document.getElementById('volume-bars').classList.remove('active');
+
+            if (volumeInterval) clearInterval(volumeInterval);
+            if (recognition) {
+                try { recognition.stop(); } catch (e) {}
+                recognition = null;
+            }
+            if (mediaStream) {
+                mediaStream.getTracks().forEach(track => track.stop());
+                mediaStream = null;
+            }
+            if (audioContext) {
+                try { audioContext.close(); } catch (e) {}
+                audioContext = null;
+            }
+            if (resetText && !isProcessingSuccess) {
+                const current = arabicLetters[voiceIndex];
+                document.getElementById('voice-status').innerHTML = `🎤 মাইক্রোফোনে চাপ দিয়ে বলো: <b>"${current.name}"</b>`;
+            }
+        }
+
+        function handleVoiceSuccess() {
+            if (isProcessingSuccess) return;
+            isProcessingSuccess = true;
+            stopListening(false);
+
+            const current = arabicLetters[voiceIndex];
+            const statusEl = document.getElementById('voice-status');
+            const cardEl = document.getElementById('voice-card');
+
+            voiceScore++;
+            document.getElementById('voice-score').innerText = voiceScore;
+            cardEl.classList.add('success-anim');
+
+            statusEl.innerHTML = `🎉 মাশাআল্লাহ! চমৎকার হয়েছে! (${current.name})`;
+            statusEl.style.color = '#27AE60';
+
+            // সঠিক হওয়ার পর হরফটির শুদ্ধ আরবি উচ্চারণ শুনিয়ে দেওয়া
+            speakArabic(current.sound);
+
+            // ২ সেকেন্ড পর অটোমেটিক পরের হরফে চলে যাওয়া
+            setTimeout(() => {
+                cardEl.classList.remove('success-anim');
+                isProcessingSuccess = false;
+                nextVoiceLetter();
+            }, 2200);
+        }
+
+        // =========================================================================
+        // 🎮 QUIZ GAME LOGIC
+        // =========================================================================
+        let currentQuizAnswer = null;
+        let score = 0;
+
+        function loadQuiz() {
+            const feedback = document.getElementById('quiz-feedback');
+            feedback.innerHTML = '';
+            
+            const randomIndex = Math.floor(Math.random() * arabicLetters.length);
+            currentQuizAnswer = arabicLetters[randomIndex];
+            document.getElementById('quiz-char').innerText = currentQuizAnswer.char;
+
+            let options = [currentQuizAnswer];
+            while(options.length < 4) {
+                let randomOpt = arabicLetters[Math.floor(Math.random() * arabicLetters.length)];
+                if(!options.includes(randomOpt)) options.push(randomOpt);
+            }
+            options.sort(() => Math.random() - 0.5);
+
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'quiz-btn';
+                btn.innerText = opt.name;
+                btn.onclick = () => checkAnswer(opt, btn);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function speakCurrentQuiz() {
+            if(currentQuizAnswer) speakArabic(currentQuizAnswer.sound);
+        }
+
+        function checkAnswer(selected, btnElement) {
+            const feedback = document.getElementById('quiz-feedback');
+            if(selected.char === currentQuizAnswer.char) {
+                score++;
+                document.getElementById('score').innerText = score;
+                btnElement.style.background = '#4CAF50';
+                btnElement.style.color = 'white';
+                btnElement.style.borderColor = '#388E3C';
+                feedback.style.color = '#2E7D32';
+                feedback.innerHTML = '🎉 মাশাআল্লাহ! সঠিক উত্তর!';
+                speakArabic(currentQuizAnswer.sound);
+                setTimeout(() => { loadQuiz(); }, 1500);
+            } else {
+                btnElement.style.background = '#FF5252';
+                btnElement.style.color = 'white';
+                feedback.style.color = '#C62828';
+                feedback.innerHTML = '❌ হয়নি, আবার চেষ্টা করো!';
+            }
+        }
+
+        window.onload = () => {
+            loadQuiz();
+            updateVoiceUI();
+        };
+    </script>
+</body>
+</html>
